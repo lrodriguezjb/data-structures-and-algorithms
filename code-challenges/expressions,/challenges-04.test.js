@@ -344,3 +344,5 @@ xdescribe("Testing challenge 7", () => {
     expect(findShells(seashells).length).toStrictEqual(9);
   });
 });
+
+// -----------------
