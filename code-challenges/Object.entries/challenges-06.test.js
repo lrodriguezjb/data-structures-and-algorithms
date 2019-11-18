@@ -102,7 +102,7 @@ hasChildrenValues(characters, 'Sansa') will return false
 ------------------------------------------------------------------------------------------------ */
 
 const hasChildrenValues = (arr, character) => {
-  // Solution code here...
+  return arr.map(c => c.house);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -114,7 +114,12 @@ The input and output of this function are the same as the input and output from 
 ------------------------------------------------------------------------------------------------ */
 
 const hasChildrenEntries = (arr, character) => {
-  // Solution code here...
+  return Object.values(arr.filter(c => c.name === character)[0]).reduce(
+    (a, v) => {
+      return a || (typeof v === "object" && v.length > 0);
+    },
+    false
+  );
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -146,7 +151,14 @@ For example: [{ house: 'Stark', members: 7 }, { house: 'Arryn', members: 3 }, ..
 
 const houseSize = arr => {
   const sizes = [];
-  // Solution code here...
+  arr.forEach(c => {
+    const children = c.children.length;
+    const spouse = c.spouse ? 1 : 0;
+    sizes.push({
+      house: c.house,
+      members: 1 + children + spouse
+    });
+  });
   return sizes;
 };
 
